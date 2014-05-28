@@ -11,7 +11,7 @@ Requirements
 
 Getting Perfwatcher's Docker files
 ----------------------------------
-* `From GitHub` : git clone -b perfwatcher-docker https://github.com/perfwatcher/perfwatcher.git perfwatcher-docker
+* `From GitHub` : git clone https://github.com/perfwatcher/perfwatcher-docker.git
 
 
 
