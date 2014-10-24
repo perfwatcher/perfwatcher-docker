@@ -28,9 +28,9 @@ RUN tar xzf libmicrohttpd-0.9.22.tar.gz && cd libmicrohttpd-0.9.22 && \
  rm -r libmicrohttpd-0.9.22 libmicrohttpd-0.9.22.tar.gz
 
 # collectd-pw installation
-RUN wget http://perfwatcher.free.fr/download/collectd/collectd-5.4.0.20140219.tar.gz 
-RUN tar xzf collectd-5.4.0.20140219.tar.gz
-RUN cd collectd-5.4.0.20140219 && CFLAGS=" -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations " ./configure --enable-top \ 
+RUN wget http://perfwatcher.free.fr/download/collectd/collectd-5.4.0.20140805.tar.gz 
+RUN tar xzf collectd-5.4.0.20140805.tar.gz
+RUN cd collectd-5.4.0.20140805 && CFLAGS=" -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations " ./configure --enable-top \ 
  --enable-cpu --enable-rrdtool --enable-jsonrpc \
  --enable-notify_file --enable-basic_aggregator \
  --enable-write_top --prefix=/usr && make -j && make install && \
@@ -43,9 +43,9 @@ ADD collectd.conf /etc/collectd/collectd.conf
 RUN apt-get install -y php5-gd php5-mysql php5-curl mysql-server mysql-client php-pear php-mdb2-driver-mysql
 
 # perfwatcher installation
-RUN wget http://perfwatcher.free.fr/download/perfwatcher/perfwatcher-2.1-20140326.tar.gz
-RUN tar xzf perfwatcher-2.1-20140326.tar.gz && rm perfwatcher-2.1-20140326.tar.gz && \
-mv perfwatcher-2.1-20140326 /var/www/html/perfwatcher
+RUN wget http://perfwatcher.free.fr/download/perfwatcher/perfwatcher-2.2.1-20141008.tar.gz
+RUN tar xzf perfwatcher-2.2.1-20141008.tar.gz && rm perfwatcher-2.2.1-20141008.tar.gz && \
+mv perfwatcher-2.2.1-20141008 /var/www/html/perfwatcher
 #RUN apt-get install -y git
 #RUN git config --global http.proxy $http_proxy ; git clone -b 'release/1.2' https://github.com/perfwatcher/perfwatcher.git /var/www/html/perfwatcher
 
@@ -68,3 +68,5 @@ EXPOSE 25826
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+VOLUME ["/var/lib/collectd"]
